@@ -125,12 +125,12 @@ def update_item_quantity():
     #Back to main menu
     main_menu()
     
-def update_item_quantity():
+def delete_item():
     try:
         # For LMS user action: input new book information into the system
         item_name = input("Enter item name:")
         
-        result = m.delete_item_for_cart(item_name, item_name)
+        result = m.delete_item_for_cart(item_name)
         loading_line()
         if result:
             print(f"Success delete item {item_name} from Cart")
@@ -164,6 +164,7 @@ def check_out():
         m.insert_to_table_transaction()
         loading_line()
         print(f"Success Check Out {len(m.TEMPORARY_ITEM_TRANSANCTION)} Item, Thank you for Shopping")
+        m.TEMPORARY_ITEM_TRANSANCTION = []
     except Exception as e:
         loading_line()
         print(f"Error when delete item {e}")
@@ -173,19 +174,39 @@ def check_out():
 
 def check_history_shopping():
     data_transaction = m.get_all_item_by_customer_id()
-    print(data_transaction)
+    list_items = []
+    for i, item in enumerate(data_transaction):
+        list_items.append([i+1, 
+                            item.item_name, 
+                            item.item_amount, 
+                            item.price,
+                            item.total_price, 
+                            item.discount, 
+                            item.price_after_discount,
+                            item.created_at
+                           ])
+
+    headers = ['No', 'Item Name', 'Item Amount', 'Item Price', 'Total Price', 'Discount', 'Total after Discount', 'Purchased Date']
+    print("~ List History Shopping ~")
+    check_session_customer_active()
+    print(tabulate(list_items,headers))
+    print("..................................")
+
+    # Back to main menu
+    main_menu()
   
 # FUNCTION 9: Exit LMS
 def exit():
     # Letting user know that selected task has been executed
     print("""
-    Thank you for using Super Cashier. Tiada Kesan Tanpa Kehadiran mu ~
+    ~ Thank you for using Super Cashier. Tiada Kesan Tanpa Kehadiran mu ~
     """)
     sys.exit(0)
 
 # MAIN MENU - Super Cashier
 def main_menu():
     # User interface layout
+    print()
     print("""........... Welcome to Super Cashier System........... 
     1. Create New Customer
     2. Load registered Customer
@@ -203,43 +224,48 @@ def main_menu():
     """)
     
     # Prompting user to enter any task above 
-    tasks = range(1, 11)
-    choice = input("Enter task no: ")
+    choice = int(input("Enter task no: "))
     print(".......................................")
-    
-    if choice in tasks :
-        user_task_list = ["1", "2"]
-        # After user enter task no, respective task functions will be executed
-        if m.CUSTOMER_DATA is None and choice not in user_task_list:
-            print("please sign up customer data before continue other process")
-            main_menu()
-            
-        if choice=='1':
-            add_new_user()
-        elif choice=='1':
-            add_new_book()
-        elif choice=='1':
-            add_new_borrower()
-        elif choice=='1':
-            display_user()
-        elif choice=='1':
-            display_book()
-        elif choice=='1':
-            display_borrower()
-        elif choice=='1':
-            search_book()
-        elif choice=='1':
-            return_book()
-        elif choice=='1':
-            exit()
-        else :
-            print("invalid task number, please re-enter task")
-            main_menu()
-   
-    # If user key in no outside of available inputs, main menu will be displayed
+  
+    # exit program
+    if choice==13:
+        exit()
+        
+    # After user enter task no, respective task functions will be executed
+    user_task_list = [1, 2]
+    if m.CUSTOMER_DATA is None and choice not in user_task_list:
+        print("please sign up customer data before continue another task")
+        main_menu()
+        
+    if choice==1:
+        create_new_customer()
+    elif choice==2:
+        load_registered_customer()
+    elif choice==3:
+        check_session_customer_active()
+    elif choice==4:
+        add_new_item()
+    elif choice==5:
+        update_item_name()
+    elif choice==6:
+        update_item_quantity()
+    elif choice==7:
+        update_item_price()
+    elif choice==8:
+        delete_item()
+    elif choice==9:
+        reset_all_item()
+    elif choice==10:
+        check_order()
+    elif choice==11:
+        check_out()
+    elif choice==12:
+        check_history_shopping()
     else:
         print("invalid task number, please re-enter task")
-        main_menu()
+   
+    # If user key in no outside of available inputs, main menu will be displayed
+    main_menu()
 
 # Displaying main menu when main.py file is executed on terminal
 main_menu()

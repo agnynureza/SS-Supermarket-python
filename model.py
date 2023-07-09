@@ -1,6 +1,6 @@
 import database as db
 from sqlalchemy.orm import sessionmaker
-import random
+from datetime import date
 
 # New Session 
 Session = sessionmaker(bind=db.engine)
@@ -13,14 +13,14 @@ TEMPORARY_ITEM_TRANSANCTION = []
 def create_new_customer(name):
     customer = db.Customer(name = name)
     session.add(customer)    
-    session.flush()
+    session.commit()
     session.refresh(customer)
     
     global CUSTOMER_DATA 
     CUSTOMER_DATA = customer
     
 def search_customer_by_id(id):
-    result = session.query(db.Customer).filter(db.customer.id == id).all()
+    result = session.query(db.Customer).filter(db.Customer.id == id).all()
     if result:
         global CUSTOMER_DATA
         CUSTOMER_DATA = result[0]
@@ -45,7 +45,7 @@ def add_new_item(name, amount, price):
     
     # Check item_name before adding new one
     index = search_item_on_cart(name)
-    if index is None:
+    if index is not None:
         return False
     
     TEMPORARY_ITEM_TRANSANCTION.append({
@@ -123,12 +123,13 @@ def convert_list_of_dict_to_list_value():
     return list_values
 
 def add_discount_item(total_price):
-    if total_price > 200_000:
-        return total_price * (5/100)
+
+    if total_price > 500_000:
+        return total_price * (7/100)
     elif total_price > 300_000:
         return total_price * (6/100)
-    elif total_price > 500_000:
-        return total_price * (7/100)
+    elif total_price > 200_000:
+        return total_price * (5/100)
     else:
         return 0
 
@@ -140,9 +141,11 @@ def insert_to_table_transaction():
         transaction = db.Transaction(
             list_item["item_name"], 
             list_item["item_amount"], 
+            list_item["item_price"],
             list_item["total_price"], 
             discount, 
             price_after_discount,
+            date.today()
             )
         transaction.customers.append(CUSTOMER_DATA)
         session.add(transaction)
@@ -150,8 +153,7 @@ def insert_to_table_transaction():
     
 def get_all_item_by_customer_id():
     return session.query(db.Transaction).\
-        join(db.Item_Transaction, db.Item_Transaction.transaction_id == db.Transaction.tra).\
+        join(db.Item_Transaction, db.Item_Transaction.transaction_id == db.Transaction.id).\
         join(db.Customer, db.Customer.id == db.Item_Transaction.customer_id).\
-        filter(db.Customer.id == CUSTOMER_DATA.id).\
-        all()
+        filter(db.Customer.id == CUSTOMER_DATA.id)
         

@@ -7,7 +7,6 @@ def validation_integer(usage):
             print("Please enter a valid integer")
             continue
         if num > 0:
-            print(f'You entered: {num}')
             break
         else:
             print('Please enter a positive integer (min:1)')    
