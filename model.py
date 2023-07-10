@@ -19,11 +19,17 @@ def create_new_customer(name):
     global CUSTOMER_DATA 
     CUSTOMER_DATA = customer
     
+    global TEMPORARY_ITEM_TRANSANCTION
+    TEMPORARY_ITEM_TRANSANCTION = []
 def search_customer_by_id(id):
     result = session.query(db.Customer).filter(db.Customer.id == id).all()
     if result:
         global CUSTOMER_DATA
         CUSTOMER_DATA = result[0]
+        
+        global TEMPORARY_ITEM_TRANSANCTION
+        TEMPORARY_ITEM_TRANSANCTION = []
+    
         return True
     else:
         return False
@@ -150,7 +156,7 @@ def insert_to_table_transaction():
         transaction.customers.append(CUSTOMER_DATA)
         session.add(transaction)
     session.commit()
-    
+
 def get_all_item_by_customer_id():
     return session.query(db.Transaction).\
         join(db.Item_Transaction, db.Item_Transaction.transaction_id == db.Transaction.id).\

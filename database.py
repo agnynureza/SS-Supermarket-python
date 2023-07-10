@@ -4,7 +4,7 @@ from sqlalchemy.orm import relationship, declarative_base
 
 # Create Engine
 # Configuration Connection to SQLite
-engine = create_engine('sqlite:///super-cashier.sqlite', echo=True)
+engine = create_engine('sqlite:///super-cashier.sqlite')
 
 # Manage Tables 
 base = declarative_base()

@@ -1,9 +1,6 @@
 # Import tabulate library, function tabulate to display data in table format
 from tabulate import tabulate
 
-# Import random library, function randint to generate random int for user_id
-from random import randint
-
 import sys
 
 import model as m
@@ -13,7 +10,8 @@ import validation as v
 def loading_line():
     print(".................................")
 
-def create_new_customer(): 
+def create_new_customer():
+    
     try:
         name = input("Enter name:")
         m.create_new_customer(name)
