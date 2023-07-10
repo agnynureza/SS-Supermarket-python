@@ -113,7 +113,7 @@ __Test case 2: Add New Item__
 <img src="img/check_order.png" width="500"/>
 
 - 2.C: Input Second Item Data
-<img src="img/Input New Item Data.png" width="500"/>
+<img src="img/add_second_item.png" width="500"/>
 
 __Test case 3: Edit Item__ 
 

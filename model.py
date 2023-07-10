@@ -1,3 +1,10 @@
+""" This Module is data manipulation.
+    
+all the process to database or temporary data in application will
+process in this module
+
+"""
+
 import database as db
 from sqlalchemy.orm import sessionmaker
 from datetime import date
@@ -11,6 +18,12 @@ CUSTOMER_DATA = None
 TEMPORARY_ITEM_TRANSANCTION = []
 
 def create_new_customer(name):
+    """ create_new_customer
+    
+    connect to database to store costumer data and 
+    set the costumer ID as identifier for shopping
+    """
+    
     customer = db.Customer(name = name)
     session.add(customer)    
     session.commit()
@@ -22,6 +35,12 @@ def create_new_customer(name):
     global TEMPORARY_ITEM_TRANSANCTION
     TEMPORARY_ITEM_TRANSANCTION = []
 def search_customer_by_id(id):
+    """ search_customer_by_id
+    
+    connect to database to search exist costumer and
+    flush temporary cart on application because change session data
+    """
+    
     result = session.query(db.Customer).filter(db.Customer.id == id).all()
     if result:
         global CUSTOMER_DATA
@@ -35,6 +54,10 @@ def search_customer_by_id(id):
         return False
 
 def search_item_on_cart(name):
+    """ search_item_on_cart
+    
+    helpful for filtering duplicate item on cart or find exist item before processing
+    """
     global TEMPORARY_ITEM_TRANSANCTION
     
     key = "item_name"
@@ -47,6 +70,10 @@ def search_item_on_cart(name):
 
 
 def add_new_item(name, amount, price):
+    """ add_new_item
+    
+    add item to temporary transaction (CART)
+    """
     global TEMPORARY_ITEM_TRANSANCTION
     
     # Check item_name before adding new one
@@ -64,6 +91,10 @@ def add_new_item(name, amount, price):
     return True
 
 def update_item_name(name, new_name):
+    """ update_item_name
+    
+     will update item object with identifier item name
+    """
     global TEMPORARY_ITEM_TRANSANCTION
     
     # Check item_name before adding new one
@@ -77,6 +108,11 @@ def update_item_name(name, new_name):
 
 
 def update_item_price(name, new_price):
+    """ update_item_price
+    
+     will update item object with identifier item name
+    """
+
     global TEMPORARY_ITEM_TRANSANCTION
     
     # Check item_name
@@ -91,6 +127,11 @@ def update_item_price(name, new_price):
 
 
 def update_item_quantity(name, new_quantity):
+    """ update_item_quantity
+    
+     will update item object with identifier item name
+    """
+    
     global TEMPORARY_ITEM_TRANSANCTION
     
     # Check item_name before adding new one
@@ -104,6 +145,11 @@ def update_item_quantity(name, new_quantity):
     return True
 
 def delete_item_for_cart(name):
+    """ delete_item_for_cart
+    
+     remove object item for temporary transaction
+    """
+    
     global TEMPORARY_ITEM_TRANSANCTION
     
     # Check item_name before adding new one
@@ -116,10 +162,18 @@ def delete_item_for_cart(name):
     return True
 
 def reset_transaction():
+    """ reset_transaction
+    
+     remove all the object on temporary transaction
+    """
     global TEMPORARY_ITEM_TRANSANCTION
     TEMPORARY_ITEM_TRANSANCTION = []
     
 def convert_list_of_dict_to_list_value():
+    """ convert_list_of_dict_to_list_value
+    
+    change data structure from object to list of value
+    """
     global TEMPORARY_ITEM_TRANSANCTION
     list_values = []
     
@@ -129,7 +183,10 @@ def convert_list_of_dict_to_list_value():
     return list_values
 
 def add_discount_item(total_price):
-
+    """ add_discount_item
+    
+    calculate discount each item
+    """
     if total_price > 500_000:
         return total_price * (7/100)
     elif total_price > 300_000:
@@ -140,6 +197,10 @@ def add_discount_item(total_price):
         return 0
 
 def insert_to_table_transaction():
+    """ add_discount_item
+    
+    insert to table transaction and append to relation table item_transaction
+    """
     for _, list_item in enumerate(TEMPORARY_ITEM_TRANSANCTION):
         discount = add_discount_item(list_item["total_price"])
         price_after_discount = list_item["total_price"] - discount
@@ -158,6 +219,10 @@ def insert_to_table_transaction():
     session.commit()
 
 def get_all_item_by_customer_id():
+    """ get_all_item_by_customer_id
+    
+    get all record of history shopping
+    """
     return session.query(db.Transaction).\
         join(db.Item_Transaction, db.Item_Transaction.transaction_id == db.Transaction.id).\
         join(db.Customer, db.Customer.id == db.Item_Transaction.customer_id).\

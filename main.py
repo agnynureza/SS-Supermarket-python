@@ -1,22 +1,34 @@
+""" This Module is the main process self-service system for shopping.
+    
+you can run this module after initialize database and table SQLite,
+execute database.py, after .sqlite file created you can 
+run main.py.
+
+"""
+
 # Import tabulate library, function tabulate to display data in table format
 from tabulate import tabulate
-
+#import sys to access force exit system
 import sys
-
+#import model for manipulation data
 import model as m
+#import validation for validate payload input
 import validation as v
 
 
 def loading_line():
-    print(".................................")
+    print("..................................")
 
 def create_new_customer():
-    
+    """ This Function will create new costumer to database.
+
+    """
     try:
         name = input("Enter name:")
+        
+        # create new costumer
         m.create_new_customer(name)
         
-        # Letting user know that selected task has been executed
         loading_line()
         print(f'Success Create Customer {m.CUSTOMER_DATA.name}, Happy Shopping')
     except Exception as e:
@@ -27,8 +39,13 @@ def create_new_customer():
     main_menu()
 
 def load_registered_customer():
+    """ This Function will load exist costumer who already registered before.
+
+    """
     try:
         id = input("Enter Customer ID:")
+        
+        # search user who already register to set the session
         isFound = m.search_customer_by_id(id)
         loading_line()
         if isFound:
@@ -44,11 +61,16 @@ def load_registered_customer():
     main_menu()
 
 def check_session_customer_active():
+    """ This Function will check session login costumer.
+
+    """
     print(f"Customer ID: {m.CUSTOMER_DATA.id} | Customer Name: {m.CUSTOMER_DATA.name}")
 
 def add_new_item():
+    """ This Function will add new item after login costumer id
+
+    """
     try:
-        # For LMS user action: input new book information into the system
         item_name = input ("Enter item name:")
         item_amount = v.validation_integer("Enter item amount:")
         item_price = v.validation_integer("Enter item price:")
@@ -67,8 +89,10 @@ def add_new_item():
     main_menu()
 
 def update_item_name():
+    """ This Function will update with new item name data by item name
+
+    """
     try:
-        # For LMS user action: input new book information into the system
         item_name = input("Enter Current item name:")
         new_item_name = input("Enter New item Name:")
         
@@ -86,8 +110,10 @@ def update_item_name():
     main_menu()
     
 def update_item_price():
+    """ This Function will update with new item price data by item name
+
+    """
     try:
-        # For LMS user action: input new book information into the system
         item_name = input("Enter Current item name:")
         new_item_price = v.validation_integer("Enter item price:")
         
@@ -105,8 +131,10 @@ def update_item_price():
     main_menu()
 
 def update_item_quantity():
+    """ This Function will update with new item quantity data by item name
+
+    """
     try:
-        # For LMS user action: input new book information into the system
         item_name = input("Enter Current item name:")
         new_item_quantity = v.validation_integer("Enter item amount:")
         
@@ -124,10 +152,14 @@ def update_item_quantity():
     main_menu()
     
 def delete_item():
+    """ This Function will delete item by item name
+
+    """
     try:
-        # For LMS user action: input new book information into the system
+
         item_name = input("Enter item name:")
         
+        # delete one item from cart
         result = m.delete_item_for_cart(item_name)
         loading_line()
         if result:
@@ -142,6 +174,11 @@ def delete_item():
     main_menu()
 
 def reset_all_item():
+    """ This Function will reset transaction, it makes cart empty
+
+    """
+    
+    # empty the cart
     m.reset_transaction()
     print(f"Success Reset Transaction, Carts are Empty")
     
@@ -149,16 +186,24 @@ def reset_all_item():
     main_menu()
 
 def check_order():
+    """ This Function will display all item on cart
+
+    """
+    # construct object on cart to become nested list to display order
     headers = ['No', 'Item Name', 'Item Amount', 'Item Price', 'Total Price']
     data = m.convert_list_of_dict_to_list_value()
     print(tabulate(data,headers))
-    print("..................................")
+    loading_line()
 
     # Back to main menu
     main_menu()
 
 def check_out():
+    """ This Function will Insert item on cart to database
+
+    """
     try:
+        # insert list of item on cart to database
         m.insert_to_table_transaction()
         loading_line()
         print(f"Success Check Out {len(m.TEMPORARY_ITEM_TRANSANCTION)} Item, Thank you for Shopping")
@@ -171,8 +216,14 @@ def check_out():
     main_menu()
 
 def check_history_shopping():
+    """ This Function will display list item complete with discount price and purcashed date
+
+    """
     data_transaction = m.get_all_item_by_customer_id()
     list_items = []
+    
+    # iterate object data_transaction
+    # construct object become nested list for display history
     for i, item in enumerate(data_transaction):
         list_items.append([i+1, 
                             item.item_name, 
@@ -188,14 +239,14 @@ def check_history_shopping():
     print("~ List History Shopping ~")
     check_session_customer_active()
     print(tabulate(list_items,headers))
-    print("..................................")
+    loading_line()
 
     # Back to main menu
     main_menu()
   
-# FUNCTION 9: Exit LMS
 def exit():
-    # Letting user know that selected task has been executed
+    """ This Function access system to give signal exit
+    """
     print("""
     ~ Thank you for using Super Cashier. Tiada Kesan Tanpa Kehadiran mu ~
     """)
@@ -223,7 +274,7 @@ def main_menu():
     
     # Prompting user to enter any task above 
     choice = int(input("Enter task no: "))
-    print(".......................................")
+    loading_line()
   
     # exit program
     if choice==13:

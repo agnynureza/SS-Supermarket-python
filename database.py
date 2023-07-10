@@ -1,3 +1,8 @@
+""" This Module for database connection and initialize table.
+    
+you need to run this module before run main.py system
+
+"""
 from sqlalchemy import create_engine 
 from sqlalchemy import Column, String, Integer, ForeignKey, Date
 from sqlalchemy.orm import relationship, declarative_base
@@ -10,7 +15,11 @@ engine = create_engine('sqlite:///super-cashier.sqlite')
 base = declarative_base()
 
 class Customer(base):
-    
+    """Customer
+
+    Args:
+        base (_type_): _description_
+    """
     __tablename__ = "sc_customer"
     id = Column(Integer, primary_key=True)
     name = Column(String)
@@ -19,6 +28,11 @@ class Customer(base):
         self.name = name
         
 class Transaction(base):
+    """Transaction
+
+    Args:
+        base (_type_): _description_
+    """
     
     __tablename__ = "sc_transaction"
     id = Column(Integer, primary_key=True)
@@ -41,6 +55,11 @@ class Transaction(base):
         self.created_at = created_at
 
 class Item_Transaction(base):
+    """Item_Transaction
+
+    Args:
+        base (_type_): _description_
+    """
     __tablename__ = 'sc_item_transaction'
     customer_id = Column(Integer, ForeignKey('sc_customer.id'), primary_key = True)
     transaction_id = Column(Integer, ForeignKey('sc_transaction.id'), primary_key = True)
