@@ -76,7 +76,7 @@ _Picture 1: Directory Structure_
 - validation: middleware for payload input
 - sqlite: database based on file
 
-### E. Setup
+### F. Setup
 
 1. Clone this git repository into your local computer. https://github.com/agnynureza/SS-Supermarket-python.git
 2. Install dependency:
@@ -92,7 +92,7 @@ _Picture 1: Directory Structure_
     python main.py
     ```
 
-### F. Test Cases & Results
+### G. Test Cases & Results
 
 __Test case 1: Add New User__
 
