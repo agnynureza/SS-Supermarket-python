@@ -164,3 +164,10 @@ __Test case 8: Flow Validation__
 
 - 8.B: User Not Found when Load Data
 <img src="img/validation_user_not_found.png" width="500"/>
+
+### H. Conclusion/Future Work
+
+1. create MVP for table costumer and transaction, then give relation many-to-many
+2. costumer have session, self-service system can use by other people after finish the shopping.
+3. many feature we can utilize with binding costumer and transaction like costumer point or costumer history.
+4. for future work, maybe i will expand the process like table item, so costumer will give list of item,then the item can be restock by admin or sold out when costumer checkout the item.
