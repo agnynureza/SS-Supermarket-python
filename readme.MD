@@ -95,67 +95,71 @@ _Picture 1: Directory Structure_
 
 __Test case 1: Add New User__
 
-1.A: Input New Costumer Data 
-    <img src="img/create_new_user.png" width="800"/>
-1.B: Load Exist Costumer Data
-    <img src="img/validation_user_not_found.png" width="800"/>
-1.C: Check Costumer login 
-    <img src="img/check_user_session.png" width="800"/>
+- 1.A: Input New Costumer Data 
+<img src="img/create_new_user.png" width="500"/>
+
+- 1.B: Load Exist Costumer Data
+<img src="img/validation_user_not_found.png" width="500"/>
+
+- 1.C: Check Costumer login 
+<img src="img/check_user_session.png" width="500"/>
 
 __Test case 2: Add New Item__
 
-2.A: Input New Item Data
-    <img src="img/add_new_item.png" width="800"/>
-2.B: Check Order Item on Cart 
-    <img src="img/check_order.png" width="800"/>
-2.C: Input Second Item Data
-    <img src="img/Input New Item Data.png" width="800"/>
+- 2.A: Input New Item Data
+<img src="img/add_new_item.png" width="500"/>
+
+- 2.B: Check Order Item on Cart 
+<img src="img/check_order.png" width="500"/>
+
+- 2.C: Input Second Item Data
+<img src="img/Input New Item Data.png" width="500"/>
 
 __Test case 3: Edit Item__ 
 
-3.A: Edit New Name By Item Name
-    <img src="img/update_item_with_new_name.png" width="800"/>
+- 3.A: Edit New Name By Item Name
+<img src="img/update_item_with_new_name.png" width="500"/>
 
-3.B: Edit New Amount By Item Name 
-    <img src="img/update_item_with_new_amount.png" width="800"/>
+- 3.B: Edit New Amount By Item Name 
+<img src="img/update_item_with_new_amount.png" width="500"/>
 
-3.C: Edit New Price By Item Name  
-    <img src="img/update_with_new_price.png" width="800"/>
+- 3.C: Edit New Price By Item Name  
+<img src="img/update_with_new_price.png" width="500"/>
     
 __Test case 4: Delete item on Cart__ 
 
-4.A: Delete item
-    <img src="img/delete_item.png" width="800"/>
+- 4.A: Delete item
+<img src="img/delete_item.png" width="500"/>
 
-4.B: Check after delete item
-    <img src="img/check_order_after_delete.png" width="800"/>
+- 4.B: Check after delete item
+<img src="img/check_order_after_delete.png" width="500"/>
 
 
 __Test case 5: Reset Transaction on Cart__
 
-5.A: Reset Cart
-    <img src="img/reset_transaction.png" width="800"/>
+- 5.A: Reset Cart
+<img src="img/reset_transaction.png" width="500"/>
 
-5.B: Check after delete Reset Cart
-    <img src="img/check_order_after_reset.png" width="800"/>
+- 5.B: Check after delete Reset Cart
+<img src="img/check_order_after_reset.png" width="500"/>
 
 __Test case 6: Check out item on Cart__
 
-6.A: Check Order after add new item
-    <img src="img/check_order_after_add_new_item.png" width="800"/>
+- 6.A: Check Order after add new item
+<img src="img/check_order_after_add_new_item.png" width="500"/>
 
-6.B: Checkout all item on Cart
-    <img src="img/check_out.png" width="800"/>
+- 6.B: Checkout all item on Cart
+<img src="img/check_out.png" width="500"/>
 
 __Test case 7: Check History after Checkout__
 
-7.A: History Shopping By Costumer ID
-    <img src="img/list_history_shopping_user.png" width="800"/>
+- 7.A: History Shopping By Costumer ID
+<img src="img/list_history_shopping_user.png" width="500"/>
 
 __Test case 8: Flow Validation__
 
-8.A: Not Setup Costumer When add/update/checkout item
-    <img src="img/validation_customer_before_shopping.png" width="800"/>
+- 8.A: Not Setup Costumer When add/update/checkout item
+<img src="img/validation_customer_before_shopping.png" width="500"/>
 
-8.B: User Not Found when Load Data
-    <img src="img/validation_user_not_found.png" width="800"/>
+- 8.B: User Not Found when Load Data
+<img src="img/validation_user_not_found.png" width="500"/>
