@@ -1,6 +1,6 @@
 # Self-Service-Supermarket-Project
 
-self-service supermarket used python as main programming langueage and sqlite database
+self-service supermarket used python as main programming language and sqlite database
 
 ### A. Background
 
@@ -48,7 +48,8 @@ Libraries:
 - Table 3 - sc_item_transaction: Contain relation item and transaction 
 - Output: super-cashier.sqlite
 
-<img src="img/ERD.drawio.png" width="1000"/>
+<img src="img/ERD.drawio.png" width="500"/>
+
 _Diagram 1: ERD for DB LMS_
 
 2. Create Python Program
@@ -57,12 +58,14 @@ _Diagram 1: ERD for DB LMS_
 - Step 2: Establish connection with database
 - Step 3: Create functions for each features 
 
-<img src="img/super-cashier.drawio.png" width="1000"/>
+<img src="img/super-cashier.drawio.png" width="500"/>
+
 _Diagram 2: Flowchart Program_
 
 ### E. Directory Structure
 
-<img src="img/directory_tree.png" width="1000"/>
+<img src="img/directory_tree.png" width="500"/>
+
 _Picture 1: Directory Structure_  
 
 - database: Initialize Connection and create sqlite database and table
@@ -73,11 +76,15 @@ _Picture 1: Directory Structure_
 ### E. Setup
 
 1. Clone this git repository into your local computer. https://github.com/agnynureza/SS-Supermarket-python.git
-2. First time you need to running database.py, it will create database and table:
+2. Intsall dependency:
+    ```
+    pip install -r "requirements.txt"
+    ```
+3. First time you need to running database.py, it will create database and table:
     ```
     python database.py
     ```
-3. Execute main.py file on your terminal:
+4. Execute main.py file on your terminal:
     ```
     python main.py
     ```
@@ -85,52 +92,52 @@ _Picture 1: Directory Structure_
 ### F. Test Cases & Results
 __Test case 1: Add New User__
 1.A: Input New Costumer Data 
-    <img src="img/create_new_user.png" width="1000"/>
+    <img src="img/create_new_user.png" width="500"/>
 1.B: Load Exist Costumer Data
-    <img src="img/validation_user_not_found.png" width="1000"/>
+    <img src="img/validation_user_not_found.png" width="500"/>
 1.C: Check Costumer login 
-    <img src="img/check_user_session.png" width="1000"/>
+    <img src="img/check_user_session.png" width="500"/>
 
 __Test case 2: Add New Item__
 2.A: Input New Item Data
-    <img src="img/add_new_item.png" width="1000"/>
+    <img src="img/add_new_item.png" width="500"/>
 2.B: Check Order Item on Cart 
-    <img src="img/check_order.png" width="1000"/>
+    <img src="img/check_order.png" width="500"/>
 2.C: Input Second Item Data
-    <img src="img/Input New Item Data.png" width="1000"/>
+    <img src="img/Input New Item Data.png" width="500"/>
 
 __Test case 3: Edit Item__ 
 3.A: Edit New Name By Item Name
-    <img src="img/update_item_with_new_name.png" width="1000"/>
+    <img src="img/update_item_with_new_name.png" width="500"/>
 3.B: Edit New Amount By Item Name 
-    <img src="img/update_item_with_new_amount.png" width="1000"/>
+    <img src="img/update_item_with_new_amount.png" width="500"/>
 3.C: Edit New Price By Item Name  
-    <img src="img/update_with_new_price.png" width="1000"/>
+    <img src="img/update_with_new_price.png" width="500"/>
     
 __Test case 4: Delete item on Cart__ 
 4.A: Delete item
-    <img src="img/delete_item.png" width="1000"/>
+    <img src="img/delete_item.png" width="500"/>
 4.B: Check after delete item
-    <img src="img/check_order_after_delete.png" width="1000"/>
+    <img src="img/check_order_after_delete.png" width="500"/>
 
 __Test case 5: Reset Transaction on Cart__ 
 5.A: Reset Cart
-    <img src="img/reset_transaction.png" width="1000"/>
+    <img src="img/reset_transaction.png" width="500"/>
 5.B: Check after delete Reset Cart
-    <img src="img/check_order_after_reset.png" width="1000"/>
+    <img src="img/check_order_after_reset.png" width="500"/>
 
 __Test case 6: Check out item on Cart__ 
 6.A: Check Order after add new item
-    <img src="img/check_order_after_add_new_item.png" width="1000"/>
+    <img src="img/check_order_after_add_new_item.png" width="500"/>
 6.B: Checkout all item on Cart
-    <img src="img/check_out.png" width="1000"/>
+    <img src="img/check_out.png" width="500"/>
 
 __Test case 7: Check History after Checkout__ 
 7.A: History Shopping By Costumer ID
-    <img src="img/list_history_shopping_user.png" width="1000"/>
+    <img src="img/list_history_shopping_user.png" width="500"/>
 
 __Test case 8: Flow Validation__ 
 7.A: Not Setup Costumer When add/update/checkout item
-    <img src="img/validation_customer_before_shopping.png" width="1000"/>
+    <img src="img/validation_customer_before_shopping.png" width="500"/>
 7.B: User Not Found when Load Data
-    <img src="img/validation_user_not_found.png" width="1000"/>
+    <img src="img/validation_user_not_found.png" width="500"/>
