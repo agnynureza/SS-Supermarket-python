@@ -58,7 +58,7 @@ _Diagram 1: ERD for DB LMS_
 
 - Step 1: Import relevant modules (tabular, sqlalchemy)
 - Step 2: Establish connection with database
-- Step 3: Create functions for each features 
+- Step 3: Create functions for each features (reference from flowchart)
 
 <img src="img/super-cashier.drawio.png" width="500"/>
 
@@ -74,6 +74,7 @@ _Picture 1: Directory Structure_
 - main: all the feature process
 - model: get datafrom database or manipulation data
 - validation: middleware for payload input
+- sqlite: database based on file
 
 ### E. Setup
 
